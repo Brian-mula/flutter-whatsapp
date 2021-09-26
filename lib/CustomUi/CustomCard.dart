@@ -19,12 +19,7 @@ class CustomCard extends StatelessWidget {
           ListTile(
             leading: CircleAvatar(
               radius: 30,
-              child: SvgPicture.asset(
-                chatModel.isGroup ? 'assets/group.svg' : 'assets/person.svg',
-                color: Colors.white,
-                height: 37,
-                width: 37,
-              ),
+              child: chatModel.isGroup? Icon(Icons.group,size: 30,color: Colors.white,):Icon(Icons.person_outline,size: 30,color: Colors.white,),
               backgroundColor: Colors.blueGrey,
             ),
             title: Text(
