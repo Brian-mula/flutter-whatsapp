@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:whatsapp/CustomUi/ButtonCard.dart';
 import 'package:whatsapp/CustomUi/contactCard.dart';
 import 'package:whatsapp/models/ContactModel.dart';
 
@@ -15,12 +16,12 @@ class _SelectContactState extends State<SelectContact> {
   @override
   Widget build(BuildContext context) {
     List<ContactModel> contact = [
-      ContactModel(name: "Mulati Brian", status: "Live, love lie"),
-      ContactModel(name: "Junior", status: "Live lie"),
-      ContactModel(name: "Edureka", status: "savage"),
-      ContactModel(name: "ISC", status: "Live, love lie"),
-      ContactModel(name: "Jullie", status: "Live, love lie"),
-      ContactModel(name: "Vinny", status: "Live, love lie"),
+      ContactModel(name: "Mulati Brian", status: "Live, love lie",select: false),
+      ContactModel(name: "Junior", status: "Live lie",select: false),
+      ContactModel(name: "Edureka", status: "savage",select: false),
+      ContactModel(name: "ISC", status: "Live, love lie",select: false),
+      ContactModel(name: "Jullie", status: "Live, love lie",select: false),
+      ContactModel(name: "Vinny", status: "Live, love lie",select: false),
     ];
     return Scaffold(
         appBar: AppBar(
@@ -68,6 +69,17 @@ class _SelectContactState extends State<SelectContact> {
           ],
         ),
         body: ListView.builder(
-            itemCount: contact.length, itemBuilder: (context, index) => ContactCard(contactModel: contact[index],)));
+            itemCount: contact.length +2,
+            itemBuilder: (context, index) {
+              if (index == 0) {
+                return ButtonCard(icon: Icons.group_add,name: "New group",);
+              } else if (index == 1) {
+                return ButtonCard(icon: Icons.person_add,name: "New Contact",);
+              }
+              return
+              ContactCard(
+                contactModel: contact[index-2],
+              );
+            }));
   }
 }

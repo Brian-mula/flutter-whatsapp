@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:whatsapp/pages/chatPage.dart';
+import 'package:whatsapp/screens/Settings.dart';
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({Key? key}) : super(key: key);
@@ -26,7 +27,10 @@ class _HomeScreenState extends State<HomeScreen>
         actions: [
           IconButton(onPressed: () {}, icon: Icon(Icons.search)),
           PopupMenuButton<String>(onSelected: (value) {
-            print(value);
+            if (value == "Settings") {
+              Navigator.push(
+                  context, MaterialPageRoute(builder: (context) => Settings()));
+            }
           }, itemBuilder: (BuildContext context) {
             return [
               PopupMenuItem(
@@ -47,7 +51,7 @@ class _HomeScreenState extends State<HomeScreen>
               ),
               PopupMenuItem(
                 child: Text('Settings'),
-                value: 'Settings',
+                value: "Settings",
               ),
             ];
           })
@@ -71,12 +75,7 @@ class _HomeScreenState extends State<HomeScreen>
       ),
       body: TabBarView(
         controller: _controller,
-        children: [
-          Text('Camera'),
-          ChartPage(),
-          Text('Status'),
-          Text('Calls')
-        ],
+        children: [Text('Camera'), ChartPage(), Text('Status'), Text('Calls')],
       ),
     );
   }
